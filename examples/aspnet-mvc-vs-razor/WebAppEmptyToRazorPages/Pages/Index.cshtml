@@ -1,0 +1,41 @@
+﻿@page
+@model WebAppEmptyToRazorPages.Pages.IndexModel
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Registered users</h1>
+@if (User is not null)
+{
+	<div>
+		<h3>@User.Identity!.Name</h3>
+		<a asp-action="Logout" asp-controller="Account">Logout</a>
+	</div>
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Login
+			</th>
+			<th>
+				Email
+			</th>
+			<th>
+				Password
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.GetUsers())
+		{
+			<tr>
+				<td>@item.Login</td>
+				<td>@item.Email</td>
+				<td>@item.Password</td>
+			</tr>
+		}
+	</tbody>
+</table>
